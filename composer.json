@@ -1,0 +1,59 @@
+{
+    "name": "ttbooking/vite-manager",
+    "description": "Vite Application Manager for Laravel.",
+    "type": "library",
+    "keywords": ["laravel", "vite", "manager", "vite-manager"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/ttbooking/vite-manager/issues",
+        "source": "https://github.com/ttbooking/vite-manager"
+    },
+    "authors": [
+        {
+            "name": "Sergey Danilchenko",
+            "email": "s.danilchenko@ttbooking.ru",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "laravel/framework": "^9.19"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/larastan": "^2.0",
+        "orchestra/testbench": "^7.0",
+        "phpunit/phpunit": "^9.5.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "TTBooking\\ViteManager\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TTBooking\\ViteManager\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TTBooking\\ViteManager\\ViteServiceProvider"
+            ],
+            "aliases": {
+                "Vite": "TTBooking\\ViteManager\\Facades\\Vite"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
