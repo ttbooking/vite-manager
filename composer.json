@@ -17,12 +17,12 @@
     ],
     "require": {
         "php": "^8.0",
-        "laravel/framework": "^9.19"
+        "laravel/framework": "^9.19 || ^10.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
         "nunomaduro/larastan": "^2.0",
-        "orchestra/testbench": "^7.0",
+        "orchestra/testbench": "^7.0 || ^8.0",
         "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {
