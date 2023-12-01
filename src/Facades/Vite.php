@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static string getDefaultDriver()
- * @method static \TTBooking\ViteManager\ViteManager useAppFactory(callable(\TTBooking\ViteManager\Contracts\Vite, string, array, \Illuminate\Contracts\Container\Container): \TTBooking\ViteManager\Contracts\Vite $appFactory)
+ * @method static \TTBooking\ViteManager\ViteManager useAppFactory(callable $appFactory)
  * @method static \TTBooking\ViteManager\Contracts\Vite app(string|null $app = null)
  * @method static \TTBooking\ViteManager\Contracts\Vite configure(array $config)
  * @method static array preloadedAssets()
@@ -18,11 +18,12 @@ use Illuminate\Support\Facades\Facade;
  * @method static string hotFile()
  * @method static \TTBooking\ViteManager\Contracts\Vite useHotFile(string $path)
  * @method static \TTBooking\ViteManager\Contracts\Vite useBuildDirectory(string $path)
- * @method static \TTBooking\ViteManager\Contracts\Vite useScriptTagAttributes((callable(string, string, ?array, ?array): array)|array $attributes)
- * @method static \TTBooking\ViteManager\Contracts\Vite useStyleTagAttributes((callable(string, string, ?array, ?array): array)|array $attributes)
- * @method static \TTBooking\ViteManager\Contracts\Vite usePreloadTagAttributes((callable(string, string, ?array, ?array): array|false)|array|false $attributes)
+ * @method static \TTBooking\ViteManager\Contracts\Vite useScriptTagAttributes(callable|array $attributes)
+ * @method static \TTBooking\ViteManager\Contracts\Vite useStyleTagAttributes(callable|array $attributes)
+ * @method static \TTBooking\ViteManager\Contracts\Vite usePreloadTagAttributes(callable|array|false $attributes)
  * @method static \Illuminate\Support\HtmlString|void reactRefresh()
  * @method static string asset(string $asset, string|null $buildDirectory = null)
+ * @method static string content(string $asset, string|null $buildDirectory = null)
  * @method static string|null manifestHash(string|null $buildDirectory = null)
  * @method static bool isRunningHot()
  * @method static string toHtml()
@@ -39,10 +40,8 @@ class Vite extends Facade
 {
     /**
      * Get the registered name of the component.
-     *
-     * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return 'vite';
     }

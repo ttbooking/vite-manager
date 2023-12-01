@@ -8,12 +8,12 @@ use TTBooking\ViteManager\ViteServiceProvider;
 
 abstract class TestCase extends OrchestraTestCase
 {
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [ViteServiceProvider::class];
     }
 
-    protected function getPackageAliases($app)
+    protected function getPackageAliases($app): array
     {
         return ['Vite' => Vite::class];
     }

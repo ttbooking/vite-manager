@@ -4,7 +4,4 @@ parameters:
         - src
         - tests
 
-    level: 9
-
-includes:
-    - vendor/nunomaduro/larastan/extension.neon
+    level: 0

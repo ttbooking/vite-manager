@@ -2,9 +2,9 @@
 
 namespace TTBooking\ViteManager;
 
-use TTBooking\ViteManager\Contracts\Vite as ViteContract;
 use Illuminate\Support\Manager;
 use InvalidArgumentException;
+use TTBooking\ViteManager\Contracts\Vite as ViteContract;
 
 class ViteManager extends Manager implements ViteContract
 {
@@ -159,7 +159,7 @@ class ViteManager extends Manager implements ViteContract
      *
      * @return string
      */
-    public function hotFile(): string
+    public function hotFile()
     {
         return $this->app()->hotFile();
     }
@@ -211,7 +211,7 @@ class ViteManager extends Manager implements ViteContract
     /**
      * Use the given callback to resolve attributes for preload tags.
      *
-     * @param  (callable(string, string, ?array, ?array): array|false)|array|false  $attributes
+     * @param  (callable(string, string, ?array, ?array): (array|false))|array|false  $attributes
      * @return \TTBooking\ViteManager\Contracts\Vite
      */
     public function usePreloadTagAttributes($attributes)
@@ -253,6 +253,20 @@ class ViteManager extends Manager implements ViteContract
     public function asset($asset, $buildDirectory = null)
     {
         return $this->app()->asset($asset, $buildDirectory);
+    }
+
+    /**
+     * Get the content of a given asset.
+     *
+     * @param  string  $asset
+     * @param  string|null  $buildDirectory
+     * @return string
+     *
+     * @throws \Exception
+     */
+    public function content($asset, $buildDirectory = null)
+    {
+        return $this->app()->content($asset, $buildDirectory);
     }
 
     /**

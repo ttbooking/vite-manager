@@ -11,10 +11,8 @@ class ViteServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Blade::directive('viteApp', function ($arguments) {
             return "<?php echo app('vite')->app($arguments)->toHtml(); ?>";
@@ -23,16 +21,14 @@ class ViteServiceProvider extends ServiceProvider implements DeferrableProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/vite.php' => $this->app->configPath('vite.php'),
-            ], ['vite-manager', 'config', 'vite-manager-config']);
+            ], ['vite-manager-config', 'vite-manager', 'config']);
         }
     }
 
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/vite.php', 'vite');
 
@@ -43,10 +39,8 @@ class ViteServiceProvider extends ServiceProvider implements DeferrableProvider
 
     /**
      * Get the services provided by the provider.
-     *
-     * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return ['vite', 'vite.app', Vite::class];
     }

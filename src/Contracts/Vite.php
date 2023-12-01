@@ -102,7 +102,7 @@ interface Vite extends Htmlable
     /**
      * Use the given callback to resolve attributes for preload tags.
      *
-     * @param  (callable(string, string, ?array, ?array): array|false)|array|false  $attributes
+     * @param  (callable(string, string, ?array, ?array): (array|false))|array|false  $attributes
      * @return $this
      */
     public function usePreloadTagAttributes($attributes);
@@ -133,6 +133,17 @@ interface Vite extends Htmlable
      * @return string
      */
     public function asset($asset, $buildDirectory = null);
+
+    /**
+     * Get the content of a given asset.
+     *
+     * @param  string  $asset
+     * @param  string|null  $buildDirectory
+     * @return string
+     *
+     * @throws \Exception
+     */
+    public function content($asset, $buildDirectory = null);
 
     /**
      * Get a unique hash representing the current manifest, or null if there is no manifest.

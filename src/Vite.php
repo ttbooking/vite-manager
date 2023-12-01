@@ -2,11 +2,11 @@
 
 namespace TTBooking\ViteManager;
 
-use TTBooking\ViteManager\Contracts\Vite as ViteContract;
 use Illuminate\Foundation\Vite as BaseVite;
 use Illuminate\Support\Arr;
 use ReflectionClass;
 use ReflectionMethod;
+use TTBooking\ViteManager\Contracts\Vite as ViteContract;
 
 class Vite extends BaseVite implements ViteContract
 {

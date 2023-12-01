@@ -8,14 +8,14 @@ use TTBooking\ViteManager\Tests\TestCase;
 
 class ViteManagerTest extends TestCase
 {
-    public function testItCreatesInstances()
+    public function testItCreatesInstances(): void
     {
         $this->assertSame(Vite::app(), Vite::app());
         $this->assertSame(Vite::app('app1'), Vite::app('app1'));
         $this->assertNotSame(Vite::app('app2'), Vite::app('app3'));
     }
 
-    public function testItCanBeConfiguredWithArray()
+    public function testItCanBeConfiguredWithArray(): void
     {
         $config = [
             'nonce' => 'expected-nonce',
@@ -27,7 +27,7 @@ class ViteManagerTest extends TestCase
             'tag_attributes' => [
                 'script' => ['type' => 'text/javascript', 'nomodule'],
                 'style' => ['type' => 'text/css'],
-                'preload' => ['rel' => 'dummy'],
+                'preload' => false,
             ],
         ];
 
@@ -44,11 +44,8 @@ class ViteManagerTest extends TestCase
         $this->assertEquals($this->getViteProperty($vite, 'preloadTagAttributesResolvers')[0](), $config['tag_attributes']['preload']);
     }
 
-    protected function getViteProperty($vite, $propertyName)
+    protected function getViteProperty(object $vite, string $propertyName): mixed
     {
-        $property = (new ReflectionObject($vite))->getProperty($propertyName);
-        $property->setAccessible(true);
-
-        return $property->getValue($vite);
+        return (new ReflectionObject($vite))->getProperty($propertyName)->getValue($vite);
     }
 }
