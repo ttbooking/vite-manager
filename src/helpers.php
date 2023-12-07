@@ -13,7 +13,7 @@ if (! function_exists('vite_app')) {
     function vite_app($app = null, ...$entryPoints)
     {
         return new Illuminate\Support\HtmlString(
-            app('vite')->app($app)->withEntryPoints($entryPoints)->toHtml()
+            app('vite')->app($app)->withEntryPoints($entryPoints, true)->toHtml()
         );
     }
 }

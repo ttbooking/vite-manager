@@ -18,7 +18,7 @@ class ViteServiceProvider extends ServiceProvider implements DeferrableProvider
             [$app, $entryPoints] = array_map('trim', explode(',', $arguments, 2)) + [1 => null];
 
             return $entryPoints
-                ? "<?php echo app('vite')->app($app)->withEntryPoints([$entryPoints])->toHtml(); ?>"
+                ? "<?php echo app('vite')->app($app)->withEntryPoints([$entryPoints], true)->toHtml(); ?>"
                 : "<?php echo app('vite')->app($app)->toHtml(); ?>";
         });
 

@@ -136,11 +136,12 @@ class ViteManager extends Manager implements ViteContract
      * Set the Vite entry points.
      *
      * @param  array  $entryPoints
+     * @param  bool  $append
      * @return \TTBooking\ViteManager\Contracts\Vite
      */
-    public function withEntryPoints($entryPoints)
+    public function withEntryPoints($entryPoints, $append = false)
     {
-        return $this->app()->withEntryPoints($entryPoints);
+        return $this->app()->withEntryPoints($entryPoints, $append);
     }
 
     /**

@@ -49,10 +49,10 @@ class ViteManagerTest extends TestCase
         $vite = Vite::withEntryPoints(['entry1']);
         $this->assertEquals(['entry1'], $this->getViteProperty($vite, 'entryPoints'));
 
-        $vite->withEntryPoints(['entry2']);
+        $vite->withEntryPoints(['entry2'], true);
         $this->assertEquals(['entry1', 'entry2'], $this->getViteProperty($vite, 'entryPoints'));
 
-        $vite->withEntryPoints(['entry2']);
+        $vite->withEntryPoints(['entry2'], true);
         $this->assertEquals(['entry1', 'entry2'], $this->getViteProperty($vite, 'entryPoints'));
     }
 

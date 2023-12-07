@@ -48,9 +48,10 @@ interface Vite extends Htmlable
      * Set the Vite entry points.
      *
      * @param  array  $entryPoints
+     * @param  bool  $append
      * @return $this
      */
-    public function withEntryPoints($entryPoints);
+    public function withEntryPoints($entryPoints, $append = false);
 
     /**
      * Set the filename for the manifest file.
