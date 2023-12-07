@@ -15,7 +15,11 @@ class ViteServiceProvider extends ServiceProvider implements DeferrableProvider
     public function boot(): void
     {
         Blade::directive('viteApp', function ($arguments) {
-            return "<?php echo app('vite')->app($arguments)->toHtml(); ?>";
+            [$app, $entryPoints] = array_map('trim', explode(',', $arguments, 2)) + [1 => null];
+
+            return $entryPoints
+                ? "<?php echo app('vite')->app($app)->withEntryPoints([$entryPoints])->toHtml(); ?>"
+                : "<?php echo app('vite')->app($app)->toHtml(); ?>";
         });
 
         if ($this->app->runningInConsole()) {

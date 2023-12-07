@@ -156,6 +156,9 @@ This way, end user could change predefined options on per-app basis.
 
 {{-- Example app entry point --}}
 @viteApp('myapp')
+
+{{-- Example app with additional entry point --}}
+@viteApp('myapp', "src/Pages/{$page['component']}.vue")
 ```
 
 If you are using template engine other than Blade, you can use `vite_app` helper function:
@@ -165,6 +168,9 @@ If you are using template engine other than Blade, you can use `vite_app` helper
 
 {# Example app entry point #}
 {{ vite_app('myapp') }}
+
+{# Example app with additional entry point #}
+vite_app('myapp', 'src/Pages/' ~ page.component ~ '.vue')
 ```
 
 If you are using [TwigBridge](https://github.com/rcrowe/TwigBridge), don't forget to register this function in

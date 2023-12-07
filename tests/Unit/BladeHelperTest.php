@@ -12,5 +12,15 @@ class BladeHelperTest extends TestCase
         $this->assertSame('<?php echo app(\'vite\')->app()->toHtml(); ?>', Blade::compileString('@viteApp'));
         $this->assertSame('<?php echo app(\'vite\')->app()->toHtml(); ?>', Blade::compileString('@viteApp()'));
         $this->assertSame('<?php echo app(\'vite\')->app(\'app\')->toHtml(); ?>', Blade::compileString('@viteApp(\'app\')'));
+
+        $this->assertSame(
+            '<?php echo app(\'vite\')->app(\'app\')->withEntryPoints([\'entry\'])->toHtml(); ?>',
+            Blade::compileString('@viteApp(\'app\', \'entry\')')
+        );
+
+        $this->assertSame(
+            '<?php echo app(\'vite\')->app(\'app\')->withEntryPoints([\'entry1\', \'entry2\'])->toHtml(); ?>',
+            Blade::compileString('@viteApp(\'app\', \'entry1\', \'entry2\')')
+        );
     }
 }

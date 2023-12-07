@@ -40,4 +40,9 @@ class Vite extends BaseVite implements ViteContract
 
         return $this;
     }
+
+    public function withEntryPoints($entryPoints)
+    {
+        return parent::withEntryPoints(array_unique([...$this->entryPoints, ...$entryPoints]));
+    }
 }

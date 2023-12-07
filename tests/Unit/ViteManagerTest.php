@@ -44,6 +44,18 @@ class ViteManagerTest extends TestCase
         $this->assertEquals($this->getViteProperty($vite, 'preloadTagAttributesResolvers')[0](), $config['tag_attributes']['preload']);
     }
 
+    public function testItComplementsEntryPoints(): void
+    {
+        $vite = Vite::withEntryPoints(['entry1']);
+        $this->assertEquals(['entry1'], $this->getViteProperty($vite, 'entryPoints'));
+
+        $vite->withEntryPoints(['entry2']);
+        $this->assertEquals(['entry1', 'entry2'], $this->getViteProperty($vite, 'entryPoints'));
+
+        $vite->withEntryPoints(['entry2']);
+        $this->assertEquals(['entry1', 'entry2'], $this->getViteProperty($vite, 'entryPoints'));
+    }
+
     protected function getViteProperty(object $vite, string $propertyName): mixed
     {
         return (new ReflectionObject($vite))->getProperty($propertyName)->getValue($vite);
