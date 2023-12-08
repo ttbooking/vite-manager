@@ -2,10 +2,10 @@
 
 namespace TTBooking\ViteManager;
 
-use Illuminate\Support\Facades\Blade;
-use TTBooking\ViteManager\Contracts\Vite;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use TTBooking\ViteManager\Contracts\Vite;
 
 class ViteServiceProvider extends ServiceProvider implements DeferrableProvider
 {
