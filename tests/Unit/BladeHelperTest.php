@@ -7,7 +7,7 @@ use TTBooking\ViteManager\Tests\TestCase;
 
 class BladeHelperTest extends TestCase
 {
-    public function testEchosAreCompiled(): void
+    public function test_echos_are_compiled(): void
     {
         $this->assertSame('<?php echo app(\'vite\')->app()->toHtml(); ?>', Blade::compileString('@viteApp'));
         $this->assertSame('<?php echo app(\'vite\')->app()->toHtml(); ?>', Blade::compileString('@viteApp()'));

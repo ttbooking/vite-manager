@@ -8,14 +8,14 @@ use TTBooking\ViteManager\Tests\TestCase;
 
 class ViteManagerTest extends TestCase
 {
-    public function testItCreatesInstances(): void
+    public function test_it_creates_instances(): void
     {
         $this->assertSame(Vite::app(), Vite::app());
         $this->assertSame(Vite::app('app1'), Vite::app('app1'));
         $this->assertNotSame(Vite::app('app2'), Vite::app('app3'));
     }
 
-    public function testItCanBeConfiguredWithArray(): void
+    public function test_it_can_be_configured_with_array(): void
     {
         $config = [
             'nonce' => 'expected-nonce',
@@ -44,7 +44,7 @@ class ViteManagerTest extends TestCase
         $this->assertEquals($this->getViteProperty($vite, 'preloadTagAttributesResolvers')[0](), $config['tag_attributes']['preload']);
     }
 
-    public function testItAppendsEntryPoints(): void
+    public function test_it_appends_entry_points(): void
     {
         $vite = Vite::withEntryPoints(['entry']);
         $this->assertEquals(['entry'], $this->getViteProperty($vite, 'entryPoints'));
