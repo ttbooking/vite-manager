@@ -58,7 +58,12 @@ class Vite extends BaseVite implements ViteContract
     {
         $buildDirectory ??= $this->buildDirectory;
 
-        $entries = array_column($this->manifest($buildDirectory), 'file');
+        $manifest = $this->manifest($buildDirectory);
+        $entries = [
+            ...array_column($manifest, 'file'),
+            ...Arr::collapse(array_column($manifest, 'css')),
+        ];
+
         $files = (new Filesystem)->allFiles($this->publicPath($buildDirectory));
 
         foreach ($files as $file) {
@@ -67,7 +72,6 @@ class Vite extends BaseVite implements ViteContract
             }
 
             $normalized = str_replace('\\', '/', Str::chopEnd($file->getRelativePathname(), '.map'));
-
             if (! in_array($normalized, $entries, true)) {
                 @unlink($file);
             }
