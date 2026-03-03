@@ -292,6 +292,17 @@ class ViteManager extends Manager implements ViteContract
     }
 
     /**
+     * Clean up orphaned Vite assets.
+     *
+     * @param  string|null  $buildDirectory
+     * @return void
+     */
+    public function prune($buildDirectory = null)
+    {
+        $this->app()->prune($buildDirectory);
+    }
+
+    /**
      * Get the Vite tag content as a string of HTML.
      *
      * @return string

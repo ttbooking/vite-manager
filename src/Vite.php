@@ -2,8 +2,10 @@
 
 namespace TTBooking\ViteManager;
 
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Vite as BaseVite;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use ReflectionClass;
 use ReflectionMethod;
 use TTBooking\ViteManager\Contracts\Vite as ViteContract;
@@ -44,5 +46,31 @@ class Vite extends BaseVite implements ViteContract
     public function withEntryPoints($entryPoints, $append = false)
     {
         return parent::withEntryPoints($append ? array_unique([...$this->entryPoints, ...$entryPoints]) : $entryPoints);
+    }
+
+    /**
+     * Clean up orphaned Vite assets.
+     *
+     * @param  string|null  $buildDirectory
+     * @return void
+     */
+    public function prune($buildDirectory = null)
+    {
+        $buildDirectory ??= $this->buildDirectory;
+
+        $entries = array_column($this->manifest($buildDirectory), 'file');
+        $files = (new Filesystem)->allFiles($this->publicPath($buildDirectory));
+
+        foreach ($files as $file) {
+            if ($file->getRelativePathname() === $this->manifestFilename) {
+                continue;
+            }
+
+            $normalized = str_replace('\\', '/', Str::chopEnd($file->getRelativePathname(), '.map'));
+
+            if (! in_array($normalized, $entries, true)) {
+                @unlink($file);
+            }
+        }
     }
 }

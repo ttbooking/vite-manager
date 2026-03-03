@@ -5,10 +5,16 @@ namespace TTBooking\ViteManager;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use TTBooking\ViteManager\Console\PruneCommand;
 use TTBooking\ViteManager\Contracts\Vite;
 
 class ViteServiceProvider extends ServiceProvider implements DeferrableProvider
 {
+    /**
+     * All of the singletons that should be registered.
+     */
+    public $singletons = [PruneCommand::class];
+
     /**
      * Bootstrap any application services.
      */
@@ -39,6 +45,8 @@ class ViteServiceProvider extends ServiceProvider implements DeferrableProvider
         $this->app->singleton('vite', fn ($app) => new ViteManager($app));
         $this->app->singleton('vite.app', fn ($app) => $app['vite']->app());
         $this->app->bind(Vite::class, 'vite.app');
+
+        $this->commands([PruneCommand::class]);
     }
 
     /**
@@ -46,6 +54,6 @@ class ViteServiceProvider extends ServiceProvider implements DeferrableProvider
      */
     public function provides(): array
     {
-        return ['vite', 'vite.app', Vite::class];
+        return ['vite', 'vite.app', Vite::class, PruneCommand::class];
     }
 }

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static string content(string $asset, string|null $buildDirectory = null)
  * @method static string|null manifestHash(string|null $buildDirectory = null)
  * @method static bool isRunningHot()
+ * @method static void prune(string|null $buildDirectory = null)
  * @method static string toHtml()
  * @method static mixed driver(string|null $driver = null)
  * @method static \TTBooking\ViteManager\ViteManager extend(string $driver, \Closure $callback)

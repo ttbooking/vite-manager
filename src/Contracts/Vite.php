@@ -160,4 +160,12 @@ interface Vite extends Htmlable
      * @return bool
      */
     public function isRunningHot();
+
+    /**
+     * Clean up orphaned Vite assets.
+     *
+     * @param  string|null  $buildDirectory
+     * @return void
+     */
+    public function prune($buildDirectory = null);
 }
