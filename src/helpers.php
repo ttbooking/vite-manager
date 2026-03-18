@@ -1,18 +1,20 @@
 <?php
 
+use Illuminate\Support\HtmlString;
+
 if (! function_exists('vite_app')) {
     /**
      * Generate Vite tags for an app.
      *
      * @param  string|null  $app
      * @param  array  ...$entryPoints
-     * @return \Illuminate\Support\HtmlString
+     * @return HtmlString
      *
-     * @throws \Exception
+     * @throws Exception
      */
     function vite_app($app = null, ...$entryPoints)
     {
-        return new Illuminate\Support\HtmlString(
+        return new HtmlString(
             app('vite')->app($app)->withEntryPoints($entryPoints, true)->toHtml()
         );
     }

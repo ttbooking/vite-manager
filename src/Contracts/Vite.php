@@ -3,6 +3,7 @@
 namespace TTBooking\ViteManager\Contracts;
 
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\HtmlString;
 
 interface Vite extends Htmlable
 {
@@ -113,7 +114,7 @@ interface Vite extends Htmlable
      *
      * @param  string|string[]  $entrypoints
      * @param  string|null  $buildDirectory
-     * @return \Illuminate\Support\HtmlString
+     * @return HtmlString
      *
      * @throws \Exception
      */
@@ -122,7 +123,7 @@ interface Vite extends Htmlable
     /**
      * Generate React refresh runtime script.
      *
-     * @return \Illuminate\Support\HtmlString|void
+     * @return HtmlString|void
      */
     public function reactRefresh();
 

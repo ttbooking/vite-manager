@@ -3,6 +3,7 @@
 namespace TTBooking\ViteManager\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use TTBooking\ViteManager\ViteManager;
 
 /**
  * @method static string getDefaultDriver()
@@ -35,7 +36,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \TTBooking\ViteManager\ViteManager setContainer(\Illuminate\Contracts\Container\Container $container)
  * @method static \TTBooking\ViteManager\ViteManager forgetDrivers()
  *
- * @see \TTBooking\ViteManager\ViteManager
+ * @see ViteManager
  */
 class Vite extends Facade
 {

@@ -2,6 +2,8 @@
 
 namespace TTBooking\ViteManager;
 
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Manager;
 use InvalidArgumentException;
 use TTBooking\ViteManager\Contracts\Vite as ViteContract;
@@ -11,7 +13,7 @@ class ViteManager extends Manager implements ViteContract
     /**
      * The registered app factory.
      *
-     * @var (callable(\TTBooking\ViteManager\Contracts\Vite, string, array, \Illuminate\Contracts\Container\Container): \TTBooking\ViteManager\Contracts\Vite)|null
+     * @var (callable(ViteContract, string, array, Container): ViteContract)|null
      */
     protected $appFactory = null;
 
@@ -29,7 +31,7 @@ class ViteManager extends Manager implements ViteContract
      * Create a new driver instance.
      *
      * @param  string  $driver
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     protected function createDriver($driver)
     {
@@ -44,7 +46,7 @@ class ViteManager extends Manager implements ViteContract
      * Create a new app instance.
      *
      * @param  string  $app
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     protected function createApp($app)
     {
@@ -56,7 +58,7 @@ class ViteManager extends Manager implements ViteContract
     /**
      * Register an app factory callback.
      *
-     * @param  callable(\TTBooking\ViteManager\Contracts\Vite, string, array, \Illuminate\Contracts\Container\Container): \TTBooking\ViteManager\Contracts\Vite  $appFactory
+     * @param  callable(ViteContract, string, array, Container): ViteContract  $appFactory
      * @return $this
      */
     public function useAppFactory($appFactory)
@@ -70,9 +72,9 @@ class ViteManager extends Manager implements ViteContract
      * Get an app instance.
      *
      * @param  string|null  $app
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function app($app = null)
     {
@@ -83,7 +85,7 @@ class ViteManager extends Manager implements ViteContract
      * Apply configuration to the Vite instance.
      *
      * @param  array  $config
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     public function configure($config)
     {
@@ -125,7 +127,7 @@ class ViteManager extends Manager implements ViteContract
      * Use the given key to detect integrity hashes in the manifest.
      *
      * @param  string|false  $key
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     public function useIntegrityKey($key)
     {
@@ -137,7 +139,7 @@ class ViteManager extends Manager implements ViteContract
      *
      * @param  array  $entryPoints
      * @param  bool  $append
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     public function withEntryPoints($entryPoints, $append = false)
     {
@@ -148,7 +150,7 @@ class ViteManager extends Manager implements ViteContract
      * Set the filename for the manifest file.
      *
      * @param  string  $filename
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     public function useManifestFilename($filename)
     {
@@ -169,7 +171,7 @@ class ViteManager extends Manager implements ViteContract
      * Set the Vite "hot" file path.
      *
      * @param  string  $path
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     public function useHotFile($path)
     {
@@ -180,7 +182,7 @@ class ViteManager extends Manager implements ViteContract
      * Set the Vite build directory.
      *
      * @param  string  $path
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     public function useBuildDirectory($path)
     {
@@ -191,7 +193,7 @@ class ViteManager extends Manager implements ViteContract
      * Use the given callback to resolve attributes for script tags.
      *
      * @param  (callable(string, string, ?array, ?array): array)|array  $attributes
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     public function useScriptTagAttributes($attributes)
     {
@@ -202,7 +204,7 @@ class ViteManager extends Manager implements ViteContract
      * Use the given callback to resolve attributes for style tags.
      *
      * @param  (callable(string, string, ?array, ?array): array)|array  $attributes
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     public function useStyleTagAttributes($attributes)
     {
@@ -213,7 +215,7 @@ class ViteManager extends Manager implements ViteContract
      * Use the given callback to resolve attributes for preload tags.
      *
      * @param  (callable(string, string, ?array, ?array): (array|false))|array|false  $attributes
-     * @return \TTBooking\ViteManager\Contracts\Vite
+     * @return ViteContract
      */
     public function usePreloadTagAttributes($attributes)
     {
@@ -225,7 +227,7 @@ class ViteManager extends Manager implements ViteContract
      *
      * @param  string|string[]  $entrypoints
      * @param  string|null  $buildDirectory
-     * @return \Illuminate\Support\HtmlString
+     * @return HtmlString
      *
      * @throws \Exception
      */
@@ -237,7 +239,7 @@ class ViteManager extends Manager implements ViteContract
     /**
      * Generate React refresh runtime script.
      *
-     * @return \Illuminate\Support\HtmlString|void
+     * @return HtmlString|void
      */
     public function reactRefresh()
     {
